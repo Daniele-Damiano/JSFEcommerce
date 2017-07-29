@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
-@NamedQuery(name = "allClient", query = "SELECT b FROM Cliente b")
+@NamedQuery(name = "login", query = "SELECT b FROM Cliente b where b.email = :email and b.password = :password")
 public class Cliente implements Serializable {
 
     @Id
@@ -29,13 +29,19 @@ public class Cliente implements Serializable {
     private String nome;
     @Column(length = 20)
     private String cognome;
+    @Column(length = 30)
+    private String email;
+    @Column(length = 20)
+    private String password;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String cognome) {
+    public Cliente(String nome, String cognome, String email, String password) {
         this.nome = nome;
         this.cognome = cognome;
+        this.email = email;
+        this.password = password;
     }
 
     public int getId() {
@@ -60,6 +66,22 @@ public class Cliente implements Serializable {
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

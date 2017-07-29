@@ -8,7 +8,7 @@
  * and open the template in the editor.
  */
 
-package it.aasd.database;
+package it.database;
 
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;

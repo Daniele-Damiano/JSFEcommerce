@@ -6,13 +6,20 @@
         <title>Index</title>
     </h:head>
     <h:body>
-        <h1>Ciao</h1>
-        <h:form>
-          
-            <h:commandLink value="Clicca" action="#{controllerServlet.navigazionaPagine()}"/>
 
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Email"/>
+                <h:inputText value="#{controllerServlet.cliente.email}"/>
+
+                <h:outputLabel value="Password"/>
+                <h:inputText value="#{controllerServlet.cliente.password}"/>
+                
+                <h:commandButton value="OK" action="#{controllerServlet.callLogin()}"/>
+
+            </h:panelGrid>
         </h:form>
-        
+
     </h:body>
 </html>
 

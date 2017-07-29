@@ -23,13 +23,15 @@ import javax.ws.rs.core.GenericType;
 @RequestScoped
 public class ControllerServlet {
 
-    List<Cliente> cli;
+    private Cliente cliente;
+    private List<Cliente> cli;
     private Client client;
     private final String URI = "http://localhost:8080/JSFecom/rs";
 
     @PostConstruct
     private void init() {
         client = ClientBuilder.newClient();
+        cliente = new Cliente();
     }
 
     @PreDestroy
@@ -37,10 +39,13 @@ public class ControllerServlet {
         client.close();
     }
 
-    public String navigazionaPagine() {
+    public String callGetClientes() {
         System.out.println("Entrato navigazionaPagine()");
         String navigation;
-        cli = client.target(URI).path("/mostracliente").request().get(new GenericType<List<Cliente>>() {});// new GenericType costruisce Lisy<Cliente> un costruttore vuoto 
+
+        cli = client.target(URI).path("/mostracliente").request().get(new GenericType<List<Cliente>>() {
+        });// new GenericType costruisce Lisy<Cliente> un costruttore vuoto 
+
         if (cli == null) {
             navigation = "error";
         } else {
@@ -48,7 +53,41 @@ public class ControllerServlet {
         }
         return navigation;
     }
+
+    public String callLogin() {
+        System.out.println("ENTRATO IN CALLLOGIN()");
+        String navigation;
+
+        cliente = client.target(URI).path("/mostracliente").path("/login").resolveTemplate("email", cliente.getEmail()).resolveTemplate("password", cliente.getPassword()).request().get(Cliente.class);
+        System.out.println("INVOCAZIONE CLIENTBUILDER OK");
+        cli.add(cliente);
+        System.out.println("CLIENTE AGGIUNTO");
+        
+        if (cliente == null) {
+            navigation = "error";
+            System.out.println("CLIENT == NULL");
+        }
+        if (cliente.getEmail().equalsIgnoreCase("admin") && cliente.getPassword().equalsIgnoreCase("admin")) {
+
+            navigation = "adminPage";
+        } else {
+            navigation = "succes";
+        }
+        return navigation;
+    }
+
     
+    
+    
+    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public List<Cliente> getCli() {
         return cli;
     }
@@ -56,8 +95,5 @@ public class ControllerServlet {
     public void setCli(List<Cliente> cli) {
         this.cli = cli;
     }
-
-   
-    
 
 }

@@ -6,12 +6,12 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/list.xhtml</to-view-id>
+            <from-outcome>adminPage</from-outcome>
+            <to-view-id>/adminPage.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>error</from-outcome>
-            <to-view-id>/error.xhtml</to-view-id>
+            <from-outcome>clientPage</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
