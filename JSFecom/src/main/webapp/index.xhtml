@@ -6,18 +6,18 @@
         <title>Index</title>
     </h:head>
     <h:body>
-
-        <h:form>
-            <h:panelGrid columns="2">
+        <h:form id="loginform">
+            <h:panelGrid columns="3">
                 <h:outputLabel value="Email"/>
-                <h:inputText value="#{controllerServlet.cliente.email}"/>
-
-                <h:outputLabel value="Password"/>
-                <h:inputText value="#{controllerServlet.cliente.password}"/>
+                <h:inputText id="email" value="#{controllerServlet.cliente.email}"/>
+                <h:message warnStyle="color:red" for="email"/>
                 
+                <h:outputLabel value="Password"/>
+                <h:inputText id="password" value="#{controllerServlet.cliente.password}"/>
+                <h:message warnStyle="color:red" for="password"/>
+                 
                 <h:commandButton value="OK" action="#{controllerServlet.callLogin()}"/>
-
-            </h:panelGrid>
+                </h:panelGrid>
         </h:form>
 
     </h:body>

@@ -47,6 +47,7 @@ public class ConnectDatabase {
         c8 = new Cliente("Antonio", "Baldo","antoniobaldo@gmail.com","antoniobaldo");
         c9 = new Cliente("Luca", "De Cristofaro","lucadecristofaro@gmail.com","lucadecristofaro");
         c10 = new Cliente("Gabriella", "Di Marzo","gabrielladimarzo@gmail.com","gabrielladimarzo");
+       
         System.out.println("CLIENTI CREATI");
         
         System.out.println("INIZIO PERSIST NEL DASTABSE");
@@ -60,6 +61,7 @@ public class ConnectDatabase {
         em.persist(c8);
         em.persist(c9);
         em.persist(c10);
+       
         System.out.println("PERSIST COMPLETATO");
     }
 
